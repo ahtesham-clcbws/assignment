@@ -18,10 +18,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => 'Administrator',
+            'email' => 'assigment2023@mailinator.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$CSnvtg2DOp.ZUOHerJ3kX.K5StK7uVX8sjhVAoLncDfHjEaON7J0y', // password
             'remember_token' => Str::random(10),
         ];
     }
