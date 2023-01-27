@@ -37,6 +37,12 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        <x-responsive-nav-link :href="route('service.all')">
+                            {{ __('Services') }}
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('site.setting')">
+                            {{ __('Site Setting') }}
+                        </x-responsive-nav-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -82,6 +88,12 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('service.all')">
+                    {{ __('Services') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('service.add')">
+                    {{ __('Add Service') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

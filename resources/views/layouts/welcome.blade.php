@@ -120,6 +120,13 @@
         .text-lg {
             font-size: 1.125rem
         }
+        .text-xl {
+            font-size: 1.825rem
+        }
+        .text-xxl {
+            font-size: 2.325rem;
+            line-height: 2.825rem
+        }
 
         .leading-7 {
             line-height: 1.75rem
@@ -279,7 +286,13 @@
         }
 
         .grid-cols-1 {
-            grid-template-columns: repeat(1, minmax(0, 1fr))
+            /* grid-template-columns: auto auto auto; */
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        .gridCol1 {
+            /* grid-template-columns: auto auto auto; */
+            grid-template-columns: repeat(1, minmax(0, 1fr));
         }
 
         @media (min-width:640px) {
@@ -341,6 +354,10 @@
             .md\:grid-cols-2 {
                 grid-template-columns: repeat(2, minmax(0, 1fr))
             }
+
+            .md\:gridCols3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
         }
 
         @media (min-width:1024px) {
@@ -394,21 +411,10 @@
 
 <body class="antialiased">
     {{ $slot }}
-    {{-- <script script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> --}}
     <script>
         function selectLocation(event) {
             var location = event.innerHTML;
             window.location.href = '/services/' + location;
-            // $.ajax({
-            //     url: '/get-services/' + location,
-            //     type: 'get',
-            //     data: {
-            //         token: '{{csrf_token()}}'
-            //     },
-            //     success: function(response) {},
-            //     error: function(error) {}
-            // })
         }
     </script>
 </body>
