@@ -34,26 +34,8 @@
             </x-dropdown>
             @if (Route::has('login'))
                 @auth
-                    {{-- <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                <div>Select Location</div>
-
-                                <div class="ml-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <x-dropdown-item value:="Delhi">Delhi</x-dropdown-item>
-                        </x-slot>
-                    </x-dropdown> --}}
+                    <a href="{{ route('dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"
+                        style="line-height: 28px; margin-left:15px;">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"
                         style="line-height: 28px; margin-left:15px;">Log in</a>
@@ -108,7 +90,7 @@
                                     <div class="mt-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
                                         {{ $service->name }} <small><small
                                                 style="color:antiquewhite">({{ $service->location }})</small></small>
-                                                <br />
+                                        <br />
                                         {{ getSitePriceVisibility() ? 'Price $ ' . number_format($service->price, 2, '.', ',') : '' }}
                                     </div>
                                 </div>

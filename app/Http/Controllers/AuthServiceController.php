@@ -64,11 +64,19 @@ class AuthServiceController extends Controller
     /**
      * Display the service edit form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request)
     {
-        return view('dashboard.services.edit', [
-            'user' => $request->user(),
-        ]);
+        // return print_r($request->id);
+
+        $serviceModel = new Services();
+
+        $service = $serviceModel->find($request->id);
+
+        $data = array();
+        $data['locations'] = getLocations();
+        $data['service'] = $service;
+
+        return view('dashboard.services.edit')->with($data);
     }
 
     /**
@@ -76,12 +84,28 @@ class AuthServiceController extends Controller
      */
     public function update(Request $request)
     {
-        $request->services()->fill($request->validated());
+        $serviceModel = new Services();
+        $service = $serviceModel->find($request->id);
 
-        $request->services()->save();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path() . '/service_image/', $imageName);
+            $service->image = '/service_image/' . $imageName;
+        }
 
-        return redirect()->to('service.all');
-        // return Redirect::route('dashboard.services.edit')->with('status', 'service-updated');
+        $service->name = $request->input('name');
+        $service->location = $request->input('location');
+        $service->description = $request->input('description');
+        $service->price = $request->input('price');
+        // $service->save();
+
+        if ($service->save()) {
+            return redirect()->route('service.all');
+        } else {
+            return back()->withErrors(['Image file not found.']);
+        }
+
     }
 
     /**
@@ -89,19 +113,10 @@ class AuthServiceController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        $serviceModel = new Services();
+        $service = $serviceModel->find($request->id);
+        $service->delete();
 
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return redirect()->route('service.all');
     }
 }

@@ -1,4 +1,4 @@
-@props(['options' => [], 'optionPlaceholder' => 'Select Value'])
+@props(['options' => [], 'optionPlaceholder' => 'Select Value', 'defaultOption' => ''])
 
 
 <select {!! $attributes->merge([
@@ -7,6 +7,6 @@
 ]) !!}>
     <option value="">{{ $optionPlaceholder }}</option>
     @foreach ($options as $item)
-        <option value="{{ $item }}">{{ $item }}</option>
+        <option {{ $defaultOption == $item ? 'selected' : '' }} value="{{ $item }}">{{ $item }}</option>
     @endforeach
 </select>
