@@ -4,6 +4,8 @@ STEPS:-
 
 -> create DB and connect with .env
 
+-> then use assignment_laravel.sql.zip file to import in database
+
 -> php artisan vendor:publish --tag=settings
 
 -> php artisan migrate
